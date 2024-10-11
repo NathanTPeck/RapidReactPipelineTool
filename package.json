@@ -1,0 +1,29 @@
+{
+  "name": "react-pipeline-tool",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "bin": {
+    "react-pipeline-tool": "./dist/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "Nathan Peck",
+  "license": "ISC",
+  "description": "Command Line Tool to create and develop a React frontend fast",
+  "dependencies": {
+    "commander": "^12.1.0",
+    "fs-extra": "^11.2.0",
+    "typescript": "^5.6.3"
+  },
+  "include": [
+    "src"
+  ],
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^22.7.5"
+  }
+}
