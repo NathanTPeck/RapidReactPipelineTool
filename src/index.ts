@@ -9,10 +9,11 @@ program
 
 program
     .command('create-project')
+    .argument('<features>', "project features option")
     .argument('<project-name>', "project name")
     .argument('<directory>', "directory for project to be added")
-    .action((projectName: string, directory: string) => {
-        createProject(projectName, directory);
+    .action(async (pages: number, projectName: string, directory: string) => {
+        await createProject(pages, projectName, directory);
     })
 
 program.parse(process.argv);

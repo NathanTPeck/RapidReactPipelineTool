@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    font-family: Helvetica, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: light dark;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Default (dark theme) colors */
+    --mainColor: #333333;
+    --mainColorLight: #5767aa;
+    --secondaryColor: #98b2ff;
+    --textColor: #eee;
+    --textColorLight: #222;
+    --bgColor: #2d2d2d;
+}
+
+body {
+    @apply bg-[var(--bgColor)] text-[var(--textColor)];
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+a {
+    font-weight: 500;
+    text-decoration: inherit;
+}
+
+h1 {
+    font-family: ITC-Charter, serif;
+    font-size: 6em;
+    line-height: 1.1;
+}
+
+h2 {
+    font-family: ITC-Charter, serif;
+    font-size: 1.5em;
+    line-height: 0.8;
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+/*!* Light Theme Overrides *!*/
+/*@media (prefers-color-scheme: light) {*/
+/*    :root {*/
+/*        --textColor: #213547;*/
+/*        --bgColor: #ffffff;*/
+/*        --mainColor: #29335c;*/
+/*        --linkHoverColor: #747bff;*/
+/*    }*/
+/*}*/
+
+/* Apply overrides when .light class is active */
+.light {
+    --textColor: #213547;
+    --bgColor: #ffffff;
+    --mainColor: #29335c;
+    --linkHoverColor: #747bff;
+}
+
+.dark {
+    --textColor: rgba(255, 255, 255, 0.87);
+    --bgColor: #2d2d2d;
+}
