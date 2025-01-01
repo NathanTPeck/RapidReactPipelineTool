@@ -1,0 +1,46 @@
+.input-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--borderColor);
+    border-radius: 0 0.75rem 0.75rem 0.75rem;
+    font-size: 1rem;
+    background-color: #ccc;
+    color: #2d2d2d;
+}
+
+.input.error {
+    border-color: #ff7f7f
+}
+
+.toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.options-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.light {
+    .input {
+        background-color: #fff;
+    }
+}

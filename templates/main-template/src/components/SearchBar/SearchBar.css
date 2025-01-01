@@ -1,0 +1,48 @@
+/* Container for the search and list */
+.search-container {
+    width: 100%;
+    min-width: 210px;
+    flex: 1;
+    font-family: Arial, sans-serif;
+    text-wrap: nowrap;
+    display: flex;
+    position: relative
+}
+
+/* Search input styling */
+.search-input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--borderColor);
+    border-radius: 0.5rem;
+    background-color: var(--bgColorTertiary);
+}
+
+/* List styling */
+.search-list {
+    width: 100%;
+    background-color: var(--bgColorSecondary);
+    border: 1px solid var(--borderColor);
+    border-radius: 5px;
+    max-height: 25rem; /* Optional: Add max height for scrolling */
+    overflow-y: auto;
+    position: absolute;
+    top: 100%;
+}
+
+/* Individual item styling */
+.search-item {
+    padding: 0.5rem;
+    border-bottom: 1px solid var(--borderColor);
+    cursor: pointer;
+}
+
+/* Remove border for the last item */
+.search-item:last-child {
+    border-bottom: none;
+}
+
+/* Hover effect for items */
+.search-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
