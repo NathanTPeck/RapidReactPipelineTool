@@ -1,0 +1,66 @@
+.btn {
+    font-weight: 500;
+    font-family: Helvetica, sans-serif;
+    border-radius: 0.5rem;
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-icon {
+    padding: 0.25rem 0.25rem;
+    border-radius: 0.25rem;
+}
+
+.btn-icon:hover {
+    background-color: rgba(0,0,0, 0.2);
+}
+
+/* Primary Button */
+.btn-primary {
+    background-color: #D04A02;
+    color: white;
+    border: none;
+    height: 2.5rem;
+}
+
+.btn-primary:hover {
+    background-color: #b02a02;
+}
+
+.btn-primary:active {
+    background-color: #ff6600;
+}
+
+.btn-primary:disabled {
+    color: #aaa;
+    background-color: rgba(255, 255, 255,0.2);
+}
+
+/* Secondary Button - Outline Style */
+.btn-secondary {
+    background-color: var(--bgColorSecondary);
+    color: #D04A02;
+    border: 2px solid #D04A02;
+    height: 2.5rem;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(150, 100, 0, 0.2); /* Very light orange on hover */
+}
+
+.btn-secondary:active {
+    background-color: rgba(200, 150, 0, 0.2); /* Slightly darker orange on click */
+}
+
+.btn-secondary:disabled {
+    color: rgba(0, 0, 0, 0.2); /* Lightened orange text when disabled */
+    border-color: rgba(0, 0, 0, 0.2); /* Lightened orange border when disabled */
+    background-color: rgba(255, 255, 255, 0.3);
+}

@@ -5,10 +5,10 @@ import { renameEtaFileFromPath } from "./file-management.js";
 
 export class TemplateDirectories {
     public static base = `../templates/main-template`;
-    public static pages = `../templates/default-page`;
+    public static pages = `../templates/pages`;
 }
 
-export const renderTemplate = async (templateDir: string, outputDir: string, userInput: {[key: string]: any}, rename: string | null) => {
+export const renderTemplate = async (templateDir: string, outputDir: string, userInput?: {[key: string]: any}, rename?: string) => {
     const eta = new Eta({views: templateDir})
 
     const renderDirectory = (currentDir: string) => {
@@ -32,7 +32,7 @@ export const renderTemplate = async (templateDir: string, outputDir: string, use
                     }
 
                     let outputFilePath: string;
-                    if (rename !== null){
+                    if (rename !== undefined) {
                         outputFilePath = renameEtaFileFromPath(outputPath, rename);
                     }
                     else{
@@ -53,4 +53,13 @@ export const renderTemplate = async (templateDir: string, outputDir: string, use
 
     fs.ensureDirSync(outputDir);
     renderDirectory(templateDir);
+}
+
+export const deleteTemplate = async (templateDir: string) => {
+    try{
+        await fs.remove(templateDir);
+    }
+    catch(error){
+        console.error(error);
+    }
 }

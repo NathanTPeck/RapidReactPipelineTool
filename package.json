@@ -23,6 +23,9 @@
   "include": [
     "src"
   ],
+  "files": [
+    "src"
+  ],
   "devDependencies": {
     "@types/fs-extra": "^11.0.4",
     "@types/node": "^22.7.5"

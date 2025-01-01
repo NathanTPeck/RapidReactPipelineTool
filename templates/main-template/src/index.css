@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --fontStandard: Inter;
+    font-family: var(--fontStandard), sans-serif;
+    line-height: 1.5;
+    font-weight: 500;
+
+    color-scheme: light dark;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    --textColor: #eee;
+    --textColorSecondary: #bbb;
+    --bgColorTertiary: #1d1d1d;
+    --bgColor: #2d2d2d;
+    --bgColorSecondary: #333;
+    --borderColor: #666;
+    --inputColor: #ccc;
+}
+
+body {
+    @apply bg-[var(--bgColor)] text-[var(--textColor)];
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+a {
+    font-weight: 500;
+    text-decoration: inherit;
+}
+
+h1 {
+    font-family: ITC-Charter, serif;
+    font-size: 6em;
+    line-height: 1.1;
+}
+
+h2 {
+    font-family: ITC-Charter, serif;
+    font-size: 1.5em;
+    line-height: 0.8;
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+.light {
+    --textColor: #222;
+    --textColorSecondary: #555;
+    --bgColor: #eee;
+    --bgColorSecondary: #ddd;
+    --borderColor: #c8c8c8;
+    --inputColor: #fff;
+    --bgColorTertiary: #fff;
+}

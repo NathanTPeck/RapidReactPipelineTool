@@ -1,0 +1,108 @@
+.nav-link-side {
+    background-color: transparent;
+    padding: 0.25rem 0.5rem;
+    margin: 0.25rem 0;
+    border: none;
+    border-radius: 0.25rem;
+    text-decoration: none;
+    font-size: 1.125rem;
+    cursor: pointer;
+    color: var(--textColorSecondary);
+}
+
+.nav-link-side:hover {
+    color: var(--textColor);
+}
+
+.nav-link-side:hover {
+    background-color: rgba(0,0,0, 0.2);
+}
+
+.sidebar-backdrop {
+    visibility: hidden;
+    background-color: rgba(0,0,0, 0.3);;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bgColor);
+    height: 100vh;
+    width: 25rem;
+    transition: transform 0.3s ease;
+}
+
+.sidebar-nav {
+    padding: 1.5rem;
+    flex-direction: column;
+}
+
+.sidebar-p {
+    font-size: 1.125rem;
+    color: var(--textColorSecondary);
+}
+
+.hide-sidebar {
+    transform: translateX(-20rem);
+}
+.show-sidebar {
+    transform: translatex(0);
+}
+
+.hide-backdrop {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s ease;
+}
+.show-backdrop {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0.5s, opacity 0.5s ease;
+}
+
+@media only screen and (max-width: 1023px) {
+    nav .nav-close {
+        position: absolute;
+        top: 0.5rem;
+        right:0.5rem;
+    }
+
+    nav a {
+        font-size: 1.5rem;
+    }
+}
+
+.dark {
+    .nav-link-side:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    .nav-link-side:active {
+        background-color: rgba(255, 255, 255, 0.1); /* Even darker on active */
+    }
+    nav a.active {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+}
+
+.light {
+    .nav-link-side:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    .nav-link-side:active {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    .sidebar-backdrop {
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    nav a.active {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+}
+
+
