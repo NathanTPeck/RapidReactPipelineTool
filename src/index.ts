@@ -3,7 +3,7 @@ import { Command } from "commander";
 const program = new Command();
 import createProject from "./commands/create-project.js";
 import addPageTemplate from "./commands/add-page-template.js";
-import addAuthBasicTemplate from "./commands/add-auth-basic-template.js";
+import addAuthTemplate from "./commands/add-auth-template.js";
 
 export const Commands = {
     createProject: "create-project",
@@ -31,7 +31,6 @@ program
     .argument('<name>', "name of page to add")
     .argument('[page-type]', "type of page to add if specified", "default")
     .action(async (directory: string, name: string, pageType: string) => {
-        console.log("hello")
         await addPageTemplate(directory, name, pageType);
     });
 
@@ -39,7 +38,7 @@ program
     .command(Commands.addAuth)
     .argument('<directory>', "directory of project, and type of auth")
     .action(async (directory: string) => {
-        await addAuthBasicTemplate(directory);
+        await addAuthTemplate(directory);
     })
 
 program.parse(process.argv);
