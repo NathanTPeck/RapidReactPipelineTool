@@ -13,7 +13,7 @@ export const Commands = {
 
 program
     .version('1.0.0')
-    .name('react-pipeline-tool');
+    .name('rapid');
 
 program
     .command(Commands.createProject)

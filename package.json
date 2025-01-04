@@ -1,9 +1,9 @@
 {
-  "name": "react-pipeline-tool",
+  "name": "rapid",
   "version": "1.0.0",
   "main": "dist/index.js",
   "bin": {
-    "react-pipeline-tool": "./dist/index.js"
+    "rapid": "./dist/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
