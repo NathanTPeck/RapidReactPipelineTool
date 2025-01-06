@@ -70,6 +70,8 @@ const addAuthTemplate = async (directory: string) => {
         await renderTemplate(authTemplatePath, absoluteDirectory);
 
         await addAuthToExistingFiles(absoluteDirectory);
+
+        console.log("Note: look for \"Todos\" in AuthContextProvider to setup authentication with your backend")
     }
     catch(err){
         console.error(err);

@@ -35,6 +35,8 @@ const createProject = async (name: string, targetDir: string, inputOptions: {[ke
             const authTemplatePath = join(__dirname, TemplateDirectories.auth);
 
             await renderTemplate(authTemplatePath, targetPath, options);
+
+            console.log("Note: look for \"Todos\" in AuthContextProvider to setup authentication with your backend")
         }
 
         console.log(`Project created at ${targetPath}`);
