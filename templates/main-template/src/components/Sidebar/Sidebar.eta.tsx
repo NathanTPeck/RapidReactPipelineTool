@@ -2,9 +2,12 @@ import Button from "../Button/Button.tsx";
 import SearchBar from "../SearchBar/SearchBar.tsx";
 import { FaTimes } from "react-icons/fa";
 import { AppName } from "../../App.tsx";
-import { RouteComponent, navRoutes, allRoutes } from "../../routes.tsx";
+import { RouteComponent, navRoutes, allRoutes } from "../../routes/Routes.tsx";
 import { NavLink } from "react-router-dom";
-import "./SideBar.css"
+import "./SideBar.css";
+<% if (it.auth == true) { %>
+import useAuth from "../../hooks/useAuth.ts";
+<% } %>
 
 
 type SidebarProps = {
@@ -13,6 +16,10 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ toggleSidebar, showSidebar }: SidebarProps) => {
+<% if (it.auth == true) { %>
+    const { user, isLoaded, logout } = useAuth();
+<% } %>
+
     const searchItems = allRoutes.map((route) => {
         return {
             label: route.name,
@@ -45,8 +52,16 @@ const Sidebar = ({ toggleSidebar, showSidebar }: SidebarProps) => {
                     <section className="flex flex-col">
                         <p className="sidebar-p">OPTIONS</p>
 <% if (it.auth == true) { %>
-                        <NavLink className="nav-link-side" to={"/login"}>Log in</NavLink>
-                        <NavLink className="nav-link-side" to={"/signup"}>Sign up</NavLink>
+                        {!user && isLoaded ? (
+                            <>
+                                <NavLink className="nav-link-side" to={"/login"}>Log in</NavLink>
+                                <NavLink className="nav-link-side" to={"/signup"}>Sign up</NavLink>
+                            </>
+                        ) : (
+                            <button className="flex nav-link-side min-w-fit" onClick={logout}>
+                                Logout
+                            </button>
+                        )}
 <% } %>
                     </section>
                 </nav>

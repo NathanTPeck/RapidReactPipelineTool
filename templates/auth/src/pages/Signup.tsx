@@ -2,9 +2,19 @@ import Form, { FormField } from "../components/Form/Form.tsx";
 import { z } from "zod";
 import Card from "../components/Card/Card.tsx";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { mockToken } from "../services/auth/AuthContextProvider.tsx";
+import useAuth from "../hooks/useAuth.ts";
 
 const Signup = () => {
     const navigate = useNavigate();
+    const { user, isLoaded, setUser, setTokenInfo } = useAuth();
+
+    useEffect(() => {
+        if (user) {
+            navigate("/home");
+        }
+    }, [isLoaded]);
 
     const fields: FormField[] = [
         {
@@ -48,6 +58,11 @@ const Signup = () => {
 
     const handleSubmit = (data: z.infer<typeof schema>)=> {
         // ToDo send to backend
+        setTokenInfo(mockToken);
+        setUser({
+            name: data.name,
+            email: data.email,
+        });
         navigate("/home");
     }
 
@@ -56,15 +71,18 @@ const Signup = () => {
     }
 
     return (
-        <Card className="w-full max-w-lg m-auto flex justify-center items-center">
+        <Card className="w-full max-w-lg m-auto flex flex-col justify-center items-center">
             <Form
-                title="Signup"
+                title="Sign up"
+                submitText="Sign up"
                 fields={fields}
-                cancellable={true}
+                cancellable={false}
                 schema={schema}
                 onSubmit={handleSubmit}
                 onCancel={handleCancel}
             />
+            <p className="mt-6">Already have an account? <a className="underline text-blue-500 cursor-pointer"
+                                                          onClick={() => navigate("/login")}>Login</a></p>
         </Card>
     );
 };

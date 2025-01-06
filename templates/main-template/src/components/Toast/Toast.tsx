@@ -1,6 +1,6 @@
 import { ToastContainer } from "react-toastify";
 import { useContext } from "react";
-import ThemeContext from "../../contexts/Theme/ThemeContext.tsx";
+import ThemeContext from "../../services/theme/ThemeContext.tsx";
 
 const Toast = () => {
     const { themeMode } = useContext(ThemeContext);

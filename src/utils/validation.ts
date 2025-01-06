@@ -1,6 +1,5 @@
 import fs from 'fs-extra';
 import {Commands} from "../index.js";
-import {Command} from "commander";
 
 export const cleanPath = (inputPath: string) => {
     return inputPath.replace(/["']+/g, '');
@@ -17,7 +16,8 @@ export const validateAndParseOptions = (command: string, inputOptions: {[key: st
             let options = {
                 name:  inputOptions.name,
                 pages: parseInt(inputOptions.pages) ?? 0,
-                auth: inputOptions.auth ?? false,
+                auth: inputOptions.auth ? true : !!inputOptions.forceAuth,
+                protected: !!inputOptions.forceAuth,
             }
             if (options.name === undefined || typeof(options.name) !== 'string' ) {
                 throw new Error(`Invalid Project name`);

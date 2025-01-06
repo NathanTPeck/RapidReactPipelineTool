@@ -1,17 +1,23 @@
-import { FC, ReactNode } from "react";
+import { FC, PropsWithChildren } from "react";
 import "./App.css";
-import ThemeContextProvider from "./contexts/Theme/ThemeContextProvider";
+import ThemeContextProvider from "./services/theme/ThemeContextProvider";
+<% if (it.auth == true) { %>
+import AuthContextProvider from "./services/auth/AuthContextProvider.tsx";
+<% } %>
 
 export const AppName = "<%= it.name%>"
 
-type Props = {
-    children: ReactNode;
-};
-
-const App: FC<Props> = ({ children }) => {
+const App: FC<PropsWithChildren> = (props: PropsWithChildren) => {
     return (
         <ThemeContextProvider>
-            {children}
+<% if (it.auth == true) { %>
+            <AuthContextProvider>
+                {props.children}
+            </AuthContextProvider>
+<% } %>
+<% else { %>
+            {props.children}
+<% } %>
         </ThemeContextProvider>
     );
 };

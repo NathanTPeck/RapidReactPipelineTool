@@ -41,7 +41,7 @@ const Form = <T extends Record<string, unknown>>(props: FormProps<T>) => {
                     />
                 ))}
             </div>
-            <div className="form-actions">
+            <div className={`form-actions ${props.cancellable ? "justify-between" : "justify-center"}`}>
                 {props.cancellable ? (<Button type="secondary" onClick={props.onCancel}>Cancel</Button>) : <div></div>}
                 <Button type="primary">{props.submitText ?? "Submit"}</Button>
             </div>
