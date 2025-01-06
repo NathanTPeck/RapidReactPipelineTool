@@ -3,10 +3,7 @@ import { Eta } from "eta";
 import { join, relative } from "path";
 import { renameEtaFileFromPath } from "./file-management.js";
 
-export class TemplateDirectories {
-    public static base = `../templates/main-template`;
-    public static pages = `../templates/pages`;
-}
+
 
 export const renderTemplate = async (templateDir: string, outputDir: string, userInput?: {[key: string]: any}, rename?: string) => {
     const eta = new Eta({views: templateDir})

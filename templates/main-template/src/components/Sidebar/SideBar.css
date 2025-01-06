@@ -55,6 +55,16 @@
     transform: translatex(0);
 }
 
+nav .nav-close {
+    position: absolute;
+    top: 0.5rem;
+    right:0.5rem;
+}
+
+nav a {
+    font-size: 1.5rem;
+}
+
 .hide-backdrop {
     visibility: hidden;
     opacity: 0;
@@ -64,18 +74,6 @@
     visibility: visible;
     opacity: 1;
     transition: visibility 0.5s, opacity 0.5s ease;
-}
-
-@media only screen and (max-width: 1023px) {
-    nav .nav-close {
-        position: absolute;
-        top: 0.5rem;
-        right:0.5rem;
-    }
-
-    nav a {
-        font-size: 1.5rem;
-    }
 }
 
 .dark {

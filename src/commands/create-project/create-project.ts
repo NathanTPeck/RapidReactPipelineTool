@@ -1,8 +1,9 @@
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import {cleanPath, isDirectoryEmpty, validateAndParseOptions} from "../utils/validation.js";
-import {deleteTemplate, renderTemplate, TemplateDirectories} from "../utils/template-rendering.js";
-import {Commands} from "../index.js";
+import {cleanPath, isDirectoryEmpty, validateAndParseOptions} from "../../utils/validation.js";
+import {deleteTemplate, renderTemplate } from "../../utils/template-rendering.js";
+import {Commands} from "../../index.js";
+import { Paths, TemplateDirectories } from "../../utils/constants.js";
 
 const createProject = async (name: string, targetDir: string, inputOptions: {[key: string]: any}) => {
     const options = validateAndParseOptions(Commands.createProject, {name, targetDir, ...inputOptions});
@@ -23,19 +24,17 @@ const createProject = async (name: string, targetDir: string, inputOptions: {[ke
 
         if (options.pages > 0) {
             const pageTemplatePath = join(__dirname, TemplateDirectories.pages, "default");
-            const pageTargetPath = join(targetPath, `src/pages`);
+            const pageTargetPath = join(targetPath, Paths.pages);
 
             for (let i = 0; i < options.pages; i++) {
-                console.log(`page: ${i}`);
                 await renderTemplate(pageTemplatePath, pageTargetPath, { pageName: `Page${i+1}` }, `Page${i+1}`);
             }
         }
 
         if (options.auth) {
-            const authTemplatePath = join(__dirname, TemplateDirectories.pages, "auth");
-            const authTargetPath = join(targetPath, `src/pages`);
+            const authTemplatePath = join(__dirname, TemplateDirectories.auth);
 
-            await renderTemplate(authTemplatePath, authTargetPath, options);
+            await renderTemplate(authTemplatePath, targetPath, options);
         }
 
         console.log(`Project created at ${targetPath}`);

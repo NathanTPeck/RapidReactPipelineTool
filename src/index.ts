@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 import { Command } from "commander";
 const program = new Command();
-import createProject from "./commands/create-project.js";
-import addPageTemplate from "./commands/add-page-template.js";
-import addAuthTemplate from "./commands/add-auth-template.js";
+import createProject from "./commands/create-project/create-project.js";
+import addPageTemplate from "./commands/add-page/add-page-template.js";
+import addAuthTemplate from "./commands/add-auth/add-auth-template.js";
 
 export const Commands = {
     createProject: "create-project",
@@ -17,11 +17,12 @@ program
 
 program
     .command(Commands.createProject)
-    .argument('<project-name>', "project name")
     .argument('<directory>', "directory for project to be added")
+    .argument('<project-name>', "project name")
     .option('-p, --pages <number>', "number of extra pages to add")
-    .option('-a, --auth', "include authentication pages")
-    .action(async (projectName: string, directory: string, options: {[key: string]: any}) => {
+    .option('-a, --auth', "include authentication setup")
+    .option('-f, --force-auth', "include authentication setup with protected routes")
+    .action(async (directory: string, projectName: string, options: {[key: string]: any}) => {
         await createProject(projectName, directory, options);
     });
 

@@ -1,11 +1,7 @@
-import { ReactNode, useEffect, useState } from "react";
-import ThemeContext from "./ThemeContext.tsx";
+import { PropsWithChildren, useEffect, useState } from "react";
+import ThemeContext from "./ThemeContext";
 
-type Props = {
-    children: ReactNode;
-}
-
-const ThemeContextProvider = ({ children }: Props) => {
+const ThemeContextProvider = (props: PropsWithChildren) => {
     const [themeMode, setThemeMode] = useState(
         localStorage.getItem("theme") ??
         (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
@@ -25,7 +21,7 @@ const ThemeContextProvider = ({ children }: Props) => {
 
     return (
         <ThemeContext.Provider value={{ themeMode, toggleTheme }}>
-            {children}
+            {props.children}
         </ThemeContext.Provider>
     )
 }
