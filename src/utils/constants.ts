@@ -1,7 +1,8 @@
+//Relative directory from command files only
 export class TemplateDirectories {
-    public static base = `../templates/main-template`;
-    public static pages = `../templates/pages`;
-    public static auth = `../templates/auth`;
+    public static base = `../../templates/main-template`;
+    public static pages = `../../templates/pages`;
+    public static auth = `../../templates/auth`;
 }
 
 export class Paths {

@@ -147,14 +147,14 @@ const addAuthToSidebar = async (filePath: string) => {
     }
 }
 
-export const addAuthToExistingFiles = async (absoluteDirectory: string) => {
+export const addAuthToExistingFiles = async (absoluteDirectory: string, protectedRoute: boolean=false) => {
     const routesTargetPath = join(absoluteDirectory, Paths.routes);
     const navbarTargetPath = join(absoluteDirectory, Paths.navbar);
     const sidebarTargetPath = join(absoluteDirectory, Paths.sidebar);
     const appTargetPath = join(absoluteDirectory, Paths.app);
 
     try {
-        await addAuthToRoutes(routesTargetPath);
+        await addAuthToRoutes(routesTargetPath, protectedRoute);
 
         await addAuthToNav(navbarTargetPath);
 

@@ -56,8 +56,13 @@ const isValid = (targetDirectoryAbsolute: string, templateDirectory: string, pro
 
 
 
-const addAuthTemplate = async (directory: string) => {
+const addAuthTemplate = async (directory: string, options: {[key: string]: any}) => {
+    let protectedRoute = false;
+    if (options.forceAuth === true) {
+        protectedRoute = true;
+    }
     const __dirname = dirname(fileURLToPath(import.meta.url));
+    console.log(__dirname);
     const absoluteDirectory = join(process.cwd(), cleanPath(directory));
 
     const authTemplatePath = join(__dirname, TemplateDirectories.auth);
@@ -69,7 +74,7 @@ const addAuthTemplate = async (directory: string) => {
     try{
         await renderTemplate(authTemplatePath, absoluteDirectory);
 
-        await addAuthToExistingFiles(absoluteDirectory);
+        await addAuthToExistingFiles(absoluteDirectory, protectedRoute);
 
         console.log("Note: look for \"Todos\" in AuthContextProvider to setup authentication with your backend")
     }

@@ -38,8 +38,9 @@ program
 program
     .command(Commands.addAuth)
     .argument('<directory>', "directory of project, and type of auth")
-    .action(async (directory: string) => {
-        await addAuthTemplate(directory);
+    .option('-f, --force-auth', "include authentication setup with protected routes")
+    .action(async (directory: string, options: {[key: string]: any}) => {
+        await addAuthTemplate(directory, options);
     })
 
 program.parse(process.argv);
