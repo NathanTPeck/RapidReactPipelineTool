@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaRegMoon, FaRegSun } from "react-icons/fa";
-import "./NavBar.css";
+import "./Navbar.css";
 import { allRoutes, navRoutes, RouteComponent } from "../../routes/Routes.tsx";
 import Button from "../Button/Button.tsx";
 import ThemeContext from "../../services/theme/ThemeContext.tsx";
@@ -12,7 +12,7 @@ import Sidebar from "../Sidebar/Sidebar.tsx";
 import useAuth from "../../hooks/useAuth.ts";
 <% } %>
 
-const NavBar = () => {
+const Navbar = () => {
     const [showSidebar, setShowSidebar] = useState(false);
     const { themeMode, toggleTheme } = useContext(ThemeContext);
 <% if (it.auth == true) { %>
@@ -24,7 +24,12 @@ const NavBar = () => {
                 label: route.name,
                 path: route.path,
             }
+<% if (it.auth == true) { %>
+    }).filter((route) => !(!!user && (route.path === "/login" || route.path === "/signup")));
+<% } %>
+<% else { %>
     });
+<% } %>
 
     const toggleSidebar = () => {
         setShowSidebar((prevState) => !prevState);
@@ -78,4 +83,4 @@ const NavBar = () => {
     );
 };
 
-export default NavBar;
+export default Navbar;

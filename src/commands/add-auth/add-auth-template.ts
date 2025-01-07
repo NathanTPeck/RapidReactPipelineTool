@@ -30,7 +30,8 @@ const isValid = (targetDirectoryAbsolute: string, templateDirectory: string, pro
 
     if (!validateFile(navbarTargetPath, [
         importRegex,
-        /(const NavBar = \(\) => {\n)/,
+        /(const Navbar = \(\) => {\n)/,
+        /(const searchItems = allRoutes\.map\()([\s\S]*?)(\);)/,
         /(\s*<div className="flex mr-8 gap-2 ml-auto">)([\s\S]*?)(\s*<\/div>)/,
     ])) {
         return false;
@@ -39,6 +40,7 @@ const isValid = (targetDirectoryAbsolute: string, templateDirectory: string, pro
     if (!validateFile(sidebarTargetPath, [
         importRegex,
         /(const Sidebar = \(\{ toggleSidebar, showSidebar }: SidebarProps\) => \{\n)/,
+        /(const searchItems = allRoutes\.map\()([\s\S]*?)(\);)/,
         /(<p className="sidebar-p">OPTIONS<\/p>)([\s\S]*?)(\s*<\/section>)/,
     ])) {
         return false;
@@ -62,7 +64,6 @@ const addAuthTemplate = async (directory: string, options: {[key: string]: any})
         protectedRoute = true;
     }
     const __dirname = dirname(fileURLToPath(import.meta.url));
-    console.log(__dirname);
     const absoluteDirectory = join(process.cwd(), cleanPath(directory));
 
     const authTemplatePath = join(__dirname, TemplateDirectories.auth);

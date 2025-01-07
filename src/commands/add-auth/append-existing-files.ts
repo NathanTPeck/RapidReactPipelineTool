@@ -73,8 +73,12 @@ const addAuthToNav = async (filePath: string) => {
             replacement: `$1import useAuth from "../../hooks/useAuth.ts";\n`
         },
         {
-            regex: /(const NavBar = \(\) => {\n)/,
+            regex: /(const Navbar = \(\) => {\n)/,
             replacement: `$1\nconst { user, isLoaded, logout } = useAuth();\n`
+        },
+        {
+            regex: /(const searchItems = allRoutes\.map\()([\s\S]*?)(\);)/,
+            replacement: `$1$2).filter((route) => !(!!user && (route.path === "/login" || route.path === "/signup")));`
         },
         {
             regex: /(\s*<div className="flex mr-8 gap-2 ml-auto">)([\s\S]*?)(\s*<\/div>)/,
@@ -118,6 +122,10 @@ const addAuthToSidebar = async (filePath: string) => {
         {
             regex: /(const Sidebar = \(\{ toggleSidebar, showSidebar }: SidebarProps\) => \{\n)/,
             replacement: `$1\nconst { user, isLoaded, logout } = useAuth();\n`
+        },
+        {
+            regex: /(const searchItems = allRoutes\.map\()([\s\S]*?)(\);)/,
+            replacement: `$1$2).filter((route) => !(!!user && (route.path === "/login" || route.path === "/signup")));`
         },
         {
             regex: /(<p className="sidebar-p">OPTIONS<\/p>)([\s\S]*?)(\s*<\/section>)/,

@@ -4,7 +4,7 @@ import { FaTimes } from "react-icons/fa";
 import { AppName } from "../../App.tsx";
 import { RouteComponent, navRoutes, allRoutes } from "../../routes/Routes.tsx";
 import { NavLink } from "react-router-dom";
-import "./SideBar.css";
+import "./Sidebar.css";
 <% if (it.auth == true) { %>
 import useAuth from "../../hooks/useAuth.ts";
 <% } %>
@@ -25,7 +25,12 @@ const Sidebar = ({ toggleSidebar, showSidebar }: SidebarProps) => {
             label: route.name,
             path: route.path,
         }
+<% if (it.auth == true) { %>
+    }).filter((route) => !(!!user && (route.path === "/login" || route.path === "/signup")));
+<% } %>
+<% else { %>
     });
+<% } %>
 
     const filteredRoutes = navRoutes.filter((route) => route.path.split("/").length < 3);
 
