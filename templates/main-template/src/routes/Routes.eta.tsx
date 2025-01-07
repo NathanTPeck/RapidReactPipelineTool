@@ -2,7 +2,7 @@ import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { ReactNode } from "react";
 import Home from "../pages/Home.tsx";
 import Error404 from "../pages/Error404.tsx";
-import NavBar from "../components/NavBar/NavBar.tsx";
+import Navbar from "../components/Navbar/Navbar.tsx";
 import Footer from "../components/Footer/Footer.tsx";
 <% if (it.pages > 0) { %>
 <% for (let i = 1; i<= it.pages; i++) { %>
@@ -40,7 +40,7 @@ export const nonNavRoutes: RouteComponent[] = [
 
 export const allRoutes: RouteComponent[] = [...navRoutes, ...nonNavRoutes];
 
-const LayoutWithoutNavBar = () => (
+const LayoutWithoutNavbar = () => (
     <>
         <div className="page-body-no-header pt-5">
             <Outlet/>
@@ -49,9 +49,9 @@ const LayoutWithoutNavBar = () => (
     </>
 );
 
-const LayoutWithNavBar = () => (
+const LayoutWithNavbar = () => (
     <>
-        <NavBar/>
+        <Navbar/>
         <div className="page-body pt-5">
             <Outlet />
         </div>
@@ -63,7 +63,7 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/" element={<Navigate to="/home" replace />} />
-            <Route element={<LayoutWithNavBar />}>
+            <Route element={<LayoutWithNavbar />}>
                 {navRoutes.map(({ path, element }: RouteComponent, index) => (
 <% if (it.protected == true) { %>
                     <Route key={index} path={path} element={(
@@ -77,7 +77,7 @@ const AppRoutes = () => {
                 <Route key="404" path="/*" element={<Error404/>}/>
             </Route>
 
-            <Route element={<LayoutWithoutNavBar />}>
+            <Route element={<LayoutWithoutNavbar />}>
                 {nonNavRoutes.map(({ path, element }: RouteComponent, index) => (
                     <Route key={100+index} path={path} element={element} />
                 ))}

@@ -8,7 +8,7 @@ export class TemplateDirectories {
 export class Paths {
     public static routes = "src/routes/Routes.tsx";
     public static app = "src/App.tsx";
-    public static navbar = "src/components/Navbar/NavBar.tsx";
+    public static navbar = "src/components/Navbar/Navbar.tsx";
     public static sidebar = "src/components/Sidebar/Sidebar.tsx";
     public static pages = "src/pages"
 }
