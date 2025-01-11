@@ -44,5 +44,5 @@
 
 /* Hover effect for items */
 .search-item:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--bgColor);
 }

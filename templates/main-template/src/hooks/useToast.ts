@@ -1,9 +1,9 @@
-import { toast } from "react-toastify";
+import { toast, ToastContent } from "react-toastify";
 
 type ToastType = "success" | "info" | "warn" | "error";
 
 const useToast = () => {
-    const notify = (type: ToastType, text: string) => {
+    const notify = (type: ToastType, text: ToastContent) => {
         switch (type) {
             case "success":
                 toast.success(text);
@@ -22,9 +22,7 @@ const useToast = () => {
         }
     }
 
-    return [
-        notify,
-    ]
+    return { notify };
 };
 
 export default useToast;

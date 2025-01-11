@@ -9,11 +9,11 @@ type ModalProps = {
     show: boolean;
     onClose: () => void;
     title?: string;
-    footerButton?: ReactNode;
+    footer?: ReactNode;
     noCloseButton?: boolean;
 };
 
-const Modal = ({ children, show, onClose, title, footerButton, noCloseButton }: ModalProps) => {
+const Modal = ({ children, show, onClose, title, footer, noCloseButton }: ModalProps) => {
     if (!show) {
         return null;
     }
@@ -28,9 +28,9 @@ const Modal = ({ children, show, onClose, title, footerButton, noCloseButton }: 
                     </div>
                     <div className="modal-content">{children}</div>
                 </div>
-                {footerButton ? (
+                {footer ? (
                     <div className="modal-footer">
-                        {footerButton}
+                        {footer}
                     </div>
                 ) : null}
             </div>

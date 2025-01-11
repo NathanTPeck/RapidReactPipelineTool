@@ -16,15 +16,19 @@ const Login = () => {
         }
     }, [isLoaded]);
 
+    if (!isLoaded) {
+        return (<img src="/loading.svg" className="m-auto"  alt="loading..."/>)
+    }
+
     const fields: FormField[] = [
         {
-            name: "email",
+            key: "email",
             label: "Email",
             type: "email",
             required: true,
         },
         {
-            name: "password",
+            key: "password",
             label: "Password",
             type: "password",
             required: true,
@@ -42,10 +46,6 @@ const Login = () => {
         setTokenInfo(mockToken);
         setUser({ ...mockUser, email: data.email });
         navigate("/home");
-    }
-
-    if (!isLoaded) {
-        return (<img src="../../public/loading.svg" className="m-auto"  alt="loading..."/>)
     }
     
     return (

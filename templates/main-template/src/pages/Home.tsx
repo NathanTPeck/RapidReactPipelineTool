@@ -9,12 +9,12 @@ import Toast from "../components/Toast/Toast";
 import Modal from "../components/Modal/Modal";
 
 const Home = () => {
-    const modalFooterButton = (
+    const modalFooter = (
         <Button type="primary" onClick={() => null}>Button</Button>
     )
     const [state, dispatch] = useReducer(modalReducer, { isShowing: false })
 
-    const [notify] = useToast()
+    const { notify } = useToast();
     return (
         <>
             <div className="container flex relative py-36 justify-center mx-auto max-w-7xl">
@@ -36,15 +36,13 @@ const Home = () => {
                     <Button type={"primary"} onClick={() => dispatch({ type: ModalActionKind.TOGGLE })}>Show Modal</Button>
                 </Card>
             </div>
-            <Modal show={state.isShowing} onClose={() => dispatch({ type: ModalActionKind.TOGGLE })} title="Example modal" footerButton={modalFooterButton}>
+            <Modal show={state.isShowing} onClose={() => dispatch({ type: ModalActionKind.TOGGLE })} title="Example modal" footer={modalFooter}>
                 <Card>
                     <p>Modal</p>
                 </Card>
             </Modal>
-            <Toast />
         </>
-)
-    ;
+    );
 };
 
 export default Home;

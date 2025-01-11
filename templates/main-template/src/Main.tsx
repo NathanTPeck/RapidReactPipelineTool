@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import AppRoutes from "./routes/Routes.tsx";
 import "./index.css";
 import App from "./App.tsx";
+import Toast from "./components/Toast/Toast.tsx";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
     <StrictMode>
@@ -11,6 +12,7 @@ createRoot(document.getElementById("root") as HTMLElement).render(
             <Router>
                 <AppRoutes/>
             </Router>
+            <Toast />
         </App>
     </StrictMode>
 );

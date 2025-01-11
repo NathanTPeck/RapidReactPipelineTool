@@ -4,6 +4,7 @@ import Home from "../pages/Home.tsx";
 import Error404 from "../pages/Error404.tsx";
 import Navbar from "../components/Navbar/Navbar.tsx";
 import Footer from "../components/Footer/Footer.tsx";
+import Features from "../pages/Features.tsx";
 <% if (it.pages > 0) { %>
 <% for (let i = 1; i<= it.pages; i++) { %>
 import Page<%= i%> from "../pages/Page<%= i %>";
@@ -25,6 +26,7 @@ export type RouteComponent = {
 
 export const navRoutes: RouteComponent[] = [
     { name: "Home", path: "/home", element: <Home /> },
+    { name: "Features", path: "/features", element: <Features /> },
 <% if (it.pages > 0) { %>
 <% for (let i = 1; i <= it.pages; i++) { %>
     { name: "Page <%= i %>", path: "/Page<%= i %>", element: <Page<%= i %> /> },
@@ -42,7 +44,7 @@ export const allRoutes: RouteComponent[] = [...navRoutes, ...nonNavRoutes];
 
 const LayoutWithoutNavbar = () => (
     <>
-        <div className="page-body-no-header pt-5">
+        <div className="page-body-no-header">
             <Outlet/>
         </div>
         <Footer />
@@ -52,7 +54,7 @@ const LayoutWithoutNavbar = () => (
 const LayoutWithNavbar = () => (
     <>
         <Navbar/>
-        <div className="page-body pt-5">
+        <div className="page-body">
             <Outlet />
         </div>
         <Footer />

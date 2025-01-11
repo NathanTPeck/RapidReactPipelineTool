@@ -7,10 +7,10 @@ import "./Form.css"
 import { ReactNode } from "react";
 
 export interface FormField {
-    name: string;
-    label: string;
+    key: string;
+    label?: string;
     type: "text" | "email" | "number" | "password" | "checkbox" | "radio" | "select" | "date" | "time" | "datetime";
-    options?: { value: string, label: string }[];
+    options?: { value?: string, label: string }[];
     required?: boolean;
     customComponent?: ReactNode;
 }
@@ -34,10 +34,10 @@ const Form = <T extends Record<string, unknown>>(props: FormProps<T>) => {
             <div className="form-fields">
                 {props.fields.map((field: FormField) => (
                     <InputFieldWrapper
-                        key={field.name}
+                        key={field.key}
                         field={field}
                         register={register}
-                        error={errors[field.name as keyof T]?.message as string}
+                        error={errors[field.key as keyof T]?.message as string}
                     />
                 ))}
             </div>

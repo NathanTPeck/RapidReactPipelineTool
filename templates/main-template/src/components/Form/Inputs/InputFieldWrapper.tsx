@@ -13,7 +13,7 @@ type InputFieldProps<T extends FieldValues> = {
 
 const InputFieldWrapper = <T extends FieldValues>({ field, register, error }: InputFieldProps<T>) => {
     const registerOptions = {
-        ...register(field.name as Path<T>),
+        ...register(field.key as Path<T>),
     };
 
     const renderers: Record<string, ReactNode | null> = {
@@ -37,7 +37,7 @@ const InputFieldWrapper = <T extends FieldValues>({ field, register, error }: In
 
     return (
         <div className="form-group">
-            <label className="form-label">{field.label} {field.required ? <span style={{ color: "indianred" }}>*</span> : ""}</label>
+            {field.label && <label className="form-label">{field.label} {field.required ? <span style={{ color: "indianred" }}>*</span> : ""}</label>}
             {renderers[field.type] ?? null}
             {error && <span className="error-message">{error}</span>}
             {field.customComponent}

@@ -6,3 +6,7 @@
     border-color: var(--borderColor);
     background-color: var(--bgColorSecondary);
 }
+
+.alt-color {
+    background-color: var(--bgColorTertiary);
+}
