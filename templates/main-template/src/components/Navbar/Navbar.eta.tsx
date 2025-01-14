@@ -40,8 +40,8 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="navbar-container backdrop-blur-xl ">
-                <header className="container mx-auto px-0 max-w-7xl">
+            <div className="navbar-container backdrop-blur-xl">
+                <header className="container mx-auto px-0 max-w-6xl">
                     <a className="flex-shrink-0 web-title" href="/">
                         <h2>{AppName}</h2>
                     </a>

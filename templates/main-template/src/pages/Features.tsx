@@ -97,7 +97,7 @@ const Features = () => {
     );
 
     return (
-        <Card className="container grid grid-cols-6 mx-auto max-w-7xl gap-5" altColor>
+        <div className="container grid grid-cols-6 mx-auto mb-40 max-w-6xl gap-5">
             <h1 className="col-span-6 text-5xl mx-auto">Feature examples</h1>
             <p className="col-span-6">This page shows some examples of the custom components that come with the application. To view the source code, go to ./src/pages/Features.tsx in your files</p>
             <Card className="col-span-6 md:col-span-3 flex-col flex justify-between gap-5">
@@ -179,7 +179,7 @@ const Features = () => {
                     </Card>
                 </Modal>
             </Card>
-        </Card>
+        </div>
     );
 };
 
