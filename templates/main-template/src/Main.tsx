@@ -5,6 +5,7 @@ import AppRoutes from "./routes/Routes.tsx";
 import "./index.css";
 import App from "./App.tsx";
 import Toast from "./components/Toast/Toast.tsx";
+import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root") as HTMLElement).render(
     <StrictMode>

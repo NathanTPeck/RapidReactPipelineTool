@@ -3,23 +3,26 @@
 @tailwind utilities;
 
 :root {
-    --fontStandard: Inter;
-    font-family: var(--fontStandard), sans-serif;
-    line-height: 1.5;
-    font-weight: 500;
+    font-family: "__Inter_aaf875", system-ui;
+    font-feature-settings: "calt", "rlig";
+    font-size: 1.125rem;
+    line-height: 24px;
+    font-weight: normal;
 
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    --textColor: #eee;
+    --textColor: #ddd;
     --textColorSecondary: #bbb;
-    --bgColorTertiary: #1d1d1d;
-    --bgColor: #2d2d2d;
-    --bgColorSecondary: #333;
-    --borderColor: #666;
+    --bgColorTertiary: #222;
+    --bgColor: #111;
+    --bgColorRGB: 17, 17, 17;
+    --bgColorSecondary: #1a1a1a;
+    --borderColor: #444;
     --inputColor: #ccc;
+    --searchbarColor: black;
 }
 
 body {
@@ -51,12 +54,18 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
 }
 
+.text-secondary {
+    color: var(--textColorSecondary);
+}
+
 .light {
     --textColor: #222;
     --textColorSecondary: #555;
-    --bgColor: #eee;
-    --bgColorSecondary: #ddd;
-    --borderColor: #c8c8c8;
+    --bgColor: #f8fcff;
+    --bgColorRGB: 248, 252, 255;
+    --bgColorSecondary: #fafaff;
+    --borderColor: #ddd;
     --inputColor: #fff;
     --bgColorTertiary: #fff;
+    --searchbarColor: white;
 }

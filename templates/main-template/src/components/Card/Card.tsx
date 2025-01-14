@@ -8,7 +8,7 @@ interface Card extends HTMLAttributes<HTMLDivElement> {
 }
 
 const Card = ({ children, className, altColor }: Card) => {
-    const classes = `card ${className ?? ""} ${altColor && "alt-color"}`;
+    const classes = `card ${className ?? ""} ${altColor ? "alt-color" : ""}`;
     return (
         <div className={classes}>
             {children}

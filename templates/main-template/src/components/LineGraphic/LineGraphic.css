@@ -4,12 +4,5 @@
     left: 0;
     z-index: 0;
     border-radius: 1.5rem;
-}
-
-.light .line-graphic {
-    background-color: rgb(192, 196, 200);
-}
-
-.dark .line-graphic {
-    background-color: rgb(68, 64, 60);
+    background-color: var(--bgColorTertiary);
 }
