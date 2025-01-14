@@ -16,27 +16,31 @@ const Signup = () => {
         }
     }, [isLoaded]);
 
+    if (!isLoaded) {
+        return (<img src="/loading.svg" className="m-auto"  alt="loading..."/>)
+    }
+
     const fields: FormField[] = [
         {
-            name: "name",
+            key: "name",
             label: "Name",
             type: "text",
             required: true,
         },
         {
-            name: "email",
+            key: "email",
             label: "Email",
             type: "email",
             required: true,
         },
         {
-            name: "password",
+            key: "password",
             label: "Password",
             type: "password",
             required: true,
         },
         {
-            name: "confirmPassword",
+            key: "confirmPassword",
             label: "Confirm Password",
             type: "password",
             required: true,

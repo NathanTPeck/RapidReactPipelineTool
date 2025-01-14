@@ -7,7 +7,7 @@ export interface SearchBarProps extends HTMLProps<HTMLDivElement> {
     className?: string;
 }
 
-type SearchItem = {
+export type SearchItem = {
     label: string;
     path: string;
 }

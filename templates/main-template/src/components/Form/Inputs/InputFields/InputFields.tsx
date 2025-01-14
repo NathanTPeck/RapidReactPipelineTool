@@ -10,7 +10,7 @@ interface DefaultInputProps<T extends FieldValues> {
 }
 
 interface MultiOptionProps<T extends FieldValues> extends DefaultInputProps<T> {
-    options: { value: string; label: string }[];
+    options: { value?: string; label: string }[];
 }
 
 interface TextFieldProps<T extends FieldValues> extends DefaultInputProps<T> {
@@ -28,8 +28,8 @@ export const Select = <T extends FieldValues>(props: MultiOptionProps<T>) => {
 
     return (
         <select className={`input ${error ? "error" : ""}`} {...registerOptions}>
-            {options.map((option) => (
-                <option key={option.value} value={option.value}>
+            {options.map((option, index) => (
+                <option key={index} value={option.value}>
                     {option.label}
                 </option>
             ))}
@@ -42,27 +42,26 @@ export const Select = <T extends FieldValues>(props: MultiOptionProps<T>) => {
 export const Checkbox = <T extends FieldValues>(props: MultiOptionProps<T>) => {
     const { options, registerOptions } = props;
     return (
-        <div className="option-group">
-            {options?.map((option) => (
-                <label key={option.value} className="option">
-                    {option.label}
-                    <input type="checkbox" {...registerOptions} value={option.value} />
-                </label>
-            ))}
-        </div>
+      <div className="option-group">
+        {options?.map((option, index) => (
+          <label key={index} className="option">
+            <input type="checkbox" {...registerOptions} />
+            {option.label}
+          </label>
+        ))}
+      </div>
     );
 };
-
 
 
 export const Radio = <T extends FieldValues>(props: MultiOptionProps<T>) => {
     const { options, registerOptions } = props;
     return (
         <div className="option-group">
-            {options?.map((option) => (
-                <label key={option.value} className="option">
-                    {option.label}
+            {options?.map((option, index) => (
+                <label key={index} className="option">
                     <input type="radio" {...registerOptions} value={option.value} />
+                    {option.label}
                 </label>
             ))}
         </div>
@@ -80,13 +79,13 @@ export const Text = <T extends FieldValues>({ registerOptions, type, error }: Te
     }
 
     return (
-        <div className="input-wrapper">
+        <div className="input-wrapper relative">
             <input
                 className={`input ${type === "password" ? "pr-[3rem]" : ""} ${error ? "error" : ""}`}
                 type={type === "password" && showPassword ? "text" : type} {...registerOptions}
             />
             {type === "password" && (
-                <Button className="ml-[-2.5rem] p-1" onClick={togglePassword} type="icon">
+                <Button className="absolute right-2 p-1" onClick={togglePassword} type="icon">
                     {showPassword ? <FaEye size={24} color="#333" /> : <FaEyeSlash size={24} color="#333" />}
                 </Button>
             )}

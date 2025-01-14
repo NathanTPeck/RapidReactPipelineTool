@@ -4,7 +4,7 @@ import { z } from "zod"
 
 const Footer = () => {
     const subscribeForm: FormField[] = [{
-        name: "email",
+        key: "email",
         label: "Email",
         type: "email",
         required: true,
