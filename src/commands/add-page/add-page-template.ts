@@ -2,20 +2,38 @@ import fs from "fs-extra"
 import { dirname, join } from "path"
 import { renderTemplate } from "../../utils/template-rendering.js";
 import { fileURLToPath } from "url";
-import { cleanPath } from "../../utils/validation.js";
-import { validateFile } from "../../utils/file-management.js";
+import { cleanPath, validateFiles } from "../../utils/validation.js";
 import { Paths, TemplateDirectories } from "../../utils/constants.js";
-import { addPageToExistingFiles } from "./append-existing-files.js";
+import { AppendFileRegex, appendFilesWithRegEx, titleCase } from "../../utils/file-management.js";
 
 export class PageTypes {
     public static default = `default`;
 }
 
-const isValid = (absoluteDirectory: string, filename: string): boolean => {
+const getAddPageAppendFileRegex = (absoluteDirectory: string, name: string, componentName: string, routeName: string) => {
+    let appendFileRegex: AppendFileRegex[] = [];
+    appendFileRegex.push({
+        filePath: join(absoluteDirectory, Paths.routes),
+        appendList: [
+            {
+                regex: /(import .*;\n)(?!(import|const|export))/,
+                replacement: `$1import ${componentName} from "../pages/${componentName}";\n`
+            },
+            {
+                regex: /(export const navRoutes: RouteComponent\[] = \[\r?\n)([\s\S]*?)(\s*];)/,
+                replacement: `$1$2\n{ name: "${name}", path: "/${routeName}", element: <${componentName} /> },$3`
+            }
+        ]
+    });
+
+    return appendFileRegex;
+}
+
+const isValid = (absoluteDirectory: string, filename: string, appendFilesList: AppendFileRegex[]): boolean => {
 
     const pagesTargetPath = join(absoluteDirectory, Paths.pages);
     if(! fs.existsSync(pagesTargetPath)) {
-        console.error(`Cannot find directory ${pagesTargetPath}, please ensure your project has not been corrupted`);
+        console.error(`Cannot find directory '${pagesTargetPath}', please ensure you entered your project directory correctly, and your project has not been corrupted`);
         return;
     }
 
@@ -24,26 +42,20 @@ const isValid = (absoluteDirectory: string, filename: string): boolean => {
         return false;
     }
 
-    const routesTargetPath = join(absoluteDirectory, Paths.routes);
-
-    if (!validateFile(routesTargetPath, [
-        /(import .*;\n)(?!(import|const|export))/,
-        /(export const navRoutes: RouteComponent\[] = \[\r?\n)([\s\S]*?)(\s*];)/
-    ])){
-        return false;
-    }
-
-    return true;
-}
+    return validateFiles(appendFilesList);
+};
 
 const addPageTemplate = async (directory: string, name: string, pageType: string) => {
     const __dirname = dirname(fileURLToPath(import.meta.url));
     const absoluteDirectory = join(process.cwd(), cleanPath(directory));
 
-    const noWsName = name.replace(/ /g, '');
+    const routeName = name.toLowerCase().replace(/ /g, '-');
+    const componentName = titleCase(name).replace(/ /g, '');
 
-    if (!isValid(absoluteDirectory, `${noWsName}.tsx`)) {
-        console.log("Validation failed: cancelling request");
+    const appendFiles = getAddPageAppendFileRegex(absoluteDirectory, name, componentName, routeName)
+
+    if (!isValid(absoluteDirectory, `${componentName}.tsx`, appendFiles)) {
+        console.error("Validation failed: cancelling request");
         return;
     }
 
@@ -56,16 +68,14 @@ const addPageTemplate = async (directory: string, name: string, pageType: string
     const pageTemplatePath = join(__dirname, TemplateDirectories.pages, `${pageType}`);
 
     try{
-        await renderTemplate(pageTemplatePath, pagesTargetPath, { pageName: noWsName }, noWsName);
+        await renderTemplate(pageTemplatePath, pagesTargetPath, { pageName: componentName }, componentName);
 
-        await addPageToExistingFiles(absoluteDirectory, name);
+        await appendFilesWithRegEx(appendFiles);
 
     } catch (error) {
         console.error(error);
     }
-
-
-}
+};
 
 export default addPageTemplate;
 

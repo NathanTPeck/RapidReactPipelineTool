@@ -22,6 +22,7 @@ program
     .option('-p, --pages <number>', "number of extra pages to add")
     .option('-a, --auth', "include authentication setup")
     .option('-f, --force-auth', "include authentication setup with protected routes")
+    .option('-b, --barebones', "remove extra features such as the footer")
     .action(async (directory: string, projectName: string, options: {[key: string]: any}) => {
         await createProject(projectName, directory, options);
     });

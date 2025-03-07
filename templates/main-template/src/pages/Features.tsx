@@ -97,7 +97,7 @@ const Features = () => {
     );
 
     return (
-        <div className="container grid grid-cols-6 mx-auto mb-40 max-w-6xl gap-5">
+        <div className="container grid grid-cols-6 mx-auto mb-40 max-w-6xl gap-5 min-w-96">
             <h1 className="col-span-6 text-5xl mx-auto">Feature examples</h1>
             <p className="col-span-6">This page shows some examples of the custom components that come with the application. To view the source code, go to ./src/pages/Features.tsx in your files</p>
             <Card className="col-span-6 md:col-span-3 flex-col flex justify-between gap-5">
@@ -127,15 +127,17 @@ const Features = () => {
                     <p>This is an example of a dynamically generated form created with the Form component in this
                         boilerplate. The form is built using a simple JSON-like configuration and Zod validation schema,
                         this allows for rapid creation and type safety</p>
-                    <p>Features:
+                    <div>
+                        <p>Features:</p>
                         <ul className="list-disc list-inside">
                             <li>Custom styled field types</li>
                             <li>Zod validation with customisable error messages</li>
                             <li>Easily customisable fields using a JSON-like field array</li>
                             <li>Simple submission handling</li>
                         </ul>
-                    </p>
-                    <p>Field Options:
+                    </div>
+                    <div>
+                        <p>Field Options:</p>
                         <ul className="list-disc list-inside">
                             <li>text | email | password</li>
                             <li>number</li>
@@ -143,7 +145,7 @@ const Features = () => {
                             <li>select</li>
                             <li>date | time</li>
                         </ul>
-                    </p>
+                    </div>
                 </div>
                 <div className="col-span-6 md:col-span-3 flex-col flex gap-5">
                     {/*----------Form example----------*/}

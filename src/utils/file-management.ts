@@ -14,10 +14,41 @@ export type FileReplacement = {
     replacement: string
 }
 
+export type AppendFileRegex = {
+    filePath: string;
+    appendList: FileReplacement[];
+}
+
+export const titleCase = (text: string) => {
+    return text.replace(
+        /\w\S*/g,
+        str => str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()
+    );
+};
+
+export const appendFilesWithRegEx = async (filesRegexList: AppendFileRegex[]) => {
+    for (const {filePath, appendList} of filesRegexList) {
+        let fileContent = fs.readFileSync(filePath, "utf-8");
+
+        try {
+            fileContent = await appendFileWithRegEx(fileContent, appendList);
+        } catch (error) {
+            console.error(`${error} @${filePath.split(/[\\/]/).pop()}`);
+            return;
+        }
+
+        try{
+            fs.writeFileSync(filePath, fileContent, "utf-8");
+        } catch (error) {
+            throw error;
+        }
+    }
+}
+
 export const appendFileWithRegEx = async (file: string, replacements: FileReplacement[]) => {
     for (const { regex, replacement } of replacements) {
         if(!regex.test(file)) {
-            throw new Error(`cannot perform task, file invalid ${regex}`)
+            throw new Error(`cannot perform task, file invalid ${regex}`);
         }
 
         file = file.replace(regex, replacement);
@@ -29,23 +60,6 @@ export const appendFileWithRegEx = async (file: string, replacements: FileReplac
         console.log("Unable to format file");
         throw error;
     }
-}
-
-const testRegex = (file: string, regexList: RegExp[]) => {
-    return regexList.some((regex) => {
-        if (regex === undefined) return false;
-        return !regex.test(file);
-    });
-}
-
-export const validateFile = (filePath: string, regexList: RegExp[]) => {
-    let fileContent = fs.readFileSync(filePath, "utf-8");
-
-    if (testRegex(fileContent, regexList)) {
-        console.log(`The file (${filePath}) has been altered and is incompatible to add requested feature`);
-        return false;
-    }
-    return true;
 }
 
 export const hasCommonFiles = (dirToMatch: string, dirToCheck: string): boolean => {

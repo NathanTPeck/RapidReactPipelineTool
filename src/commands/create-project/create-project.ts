@@ -11,7 +11,8 @@ const createProject = async (name: string, targetDir: string, inputOptions: {[ke
     const __dirname = dirname(fileURLToPath(import.meta.url));
 
     let targetPath = join(process.cwd(), cleanPath(targetDir));
-    targetPath = join(targetPath, name);
+    const directoryName = name.replace(/ /g, "");
+    targetPath = join(targetPath, directoryName);
     if (!await isDirectoryEmpty(targetPath)) {
         console.error(`The directory ${targetPath} is not empty, please use a name which does not represent an existing directory`);
         return;
@@ -29,6 +30,7 @@ const createProject = async (name: string, targetDir: string, inputOptions: {[ke
             for (let i = 0; i < options.pages; i++) {
                 await renderTemplate(pageTemplatePath, pageTargetPath, { pageName: `Page${i+1}` }, `Page${i+1}`);
             }
+            console.log(`Extra pages added:\nYou can change the name of your pages in ${targetPath}\\src\\routes\\Routes.tsx\n"`)
         }
 
         if (options.auth) {
@@ -36,10 +38,11 @@ const createProject = async (name: string, targetDir: string, inputOptions: {[ke
 
             await renderTemplate(authTemplatePath, targetPath, options);
 
-            console.log("Note: look for \"Todos\" in AuthContextProvider to setup authentication with your backend")
+            console.log(`Authentication added:\nLook for \"Todos\" in ${targetPath}\\src\\services\\auth\\AuthContextProvider.tsx to setup authentication with your backend\n`);
         }
 
         console.log(`Project created at ${targetPath}`);
+        console.log("Run npm install within your new project");
     }
     catch(err){
         console.error(err);

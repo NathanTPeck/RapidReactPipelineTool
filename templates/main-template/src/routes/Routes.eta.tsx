@@ -1,9 +1,13 @@
 import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { ReactNode } from "react";
+<% if (it.barebones == false) { %>
 import Home from "../pages/Home.tsx";
+<% } %>
 import Error404 from "../pages/Error404.tsx";
 import Navbar from "../components/Navbar/Navbar.tsx";
+<% if (it.barebones == false) { %>
 import Footer from "../components/Footer/Footer.tsx";
+<% } %>
 import Features from "../pages/Features.tsx";
 <% if (it.pages > 0) { %>
 <% for (let i = 1; i<= it.pages; i++) { %>
@@ -25,7 +29,9 @@ export type RouteComponent = {
 }
 
 export const navRoutes: RouteComponent[] = [
+<% if (it.barebones == false) { %>
     { name: "Home", path: "/home", element: <Home /> },
+<% } %>
     { name: "Features", path: "/features", element: <Features /> },
 <% if (it.pages > 0) { %>
 <% for (let i = 1; i <= it.pages; i++) { %>
@@ -44,27 +50,31 @@ export const allRoutes: RouteComponent[] = [...navRoutes, ...nonNavRoutes];
 
 const LayoutWithoutNavbar = () => (
     <>
-        <div className="page-body-no-header">
+        <div className="page-body page-height-no-header">
             <Outlet/>
         </div>
+<% if (it.barebones == false) { %>
         <Footer />
+<% } %>
     </>
 );
 
 const LayoutWithNavbar = () => (
     <>
         <Navbar/>
-        <div className="page-body">
+        <div className="page-body page-height">
             <Outlet />
         </div>
+<% if (it.barebones == false) { %>
         <Footer />
+<% } %>
     </>
 );
 
 const AppRoutes = () => {
     return (
         <Routes>
-            <Route path="/" element={<Navigate to="/home" replace />} />
+            <Route path="/" element={<Navigate to="/<%= it.barebones ? "features" : "home" %>" replace />} />
             <Route element={<LayoutWithNavbar />}>
                 {navRoutes.map(({ path, element }: RouteComponent, index) => (
 <% if (it.protected == true) { %>
