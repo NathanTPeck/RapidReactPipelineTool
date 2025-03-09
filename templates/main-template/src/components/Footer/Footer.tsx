@@ -15,9 +15,9 @@ const Footer = () => {
     })
 
     return (
-        <div className="footer-body">
-            <div className="grid grid-cols-10 container mx-auto max-w-7xl py-14 px-10">
-                <div className="col-span-5 lg:col-span-2 flex flex-col">
+        <div className="footer-body p-8">
+            <div className="grid grid-cols-10 container mx-auto max-w-6xl">
+                <div className="col-span-5 lg:col-span-2 flex flex-col pb-4">
                     <span className="footer-title">Company</span>
                     <ul>
                         <li><a href="#">About</a></li>
@@ -26,7 +26,7 @@ const Footer = () => {
                         <li><a href="#">Privacy</a></li>
                     </ul>
                 </div>
-                <div className="col-span-5 lg:col-span-2 flex flex-col">
+                <div className="col-span-5 lg:col-span-2 flex flex-col pb-4">
                     <span className="footer-title">Product</span>
                     <ul>
                         <li><a href="#">Security</a></li>
@@ -35,7 +35,7 @@ const Footer = () => {
                         <li><a href="#">Changelog</a></li>
                     </ul>
                 </div>
-                <div className="col-span-5 lg:col-span-2 flex flex-col">
+                <div className="col-span-5 lg:col-span-2 flex flex-col pb-4">
                     <span className="footer-title">Docs</span>
                     <ul>
                         <li><a href="#">Introduction</a></li>
@@ -44,7 +44,7 @@ const Footer = () => {
                         <li><a href="#">Code Blocks</a></li>
                     </ul>
                 </div>
-                <div className="col-span-5 lg:col-span-4">
+                <div className="col-span-5 lg:col-span-4 pb-4">
                     <span className="footer-title">Subscribe</span>
                     <div className="mt-4">
                         <Form
