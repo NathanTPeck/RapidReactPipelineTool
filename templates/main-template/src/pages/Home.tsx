@@ -3,14 +3,14 @@ import Card from "../components/Card/Card.tsx";
 
 const Home = () => {
     return (
-        <div className="flex flex-col gap-40 mb-40">
-            <Card className="container flex flex-col relative pt-32 pb-20 justify-center mx-auto max-w-6xl">
+        <div className="flex flex-col gap-40 mb-40 min-w-96">
+            <Card className="container flex flex-col relative pt-24 pb-20 justify-center mx-auto max-w-6xl">
                 <LineGraphic />
-                <div className="z-10 backdrop-blur-sm w-[40rem] mx-auto rounded-xl">
-                    <h1 className="text-nowrap">Rapid React</h1>
-                    <h1 className="text-right text-nowrap">Pipeline Tool</h1>
+                <div className="z-10 backdrop-blur-sm mx-auto rounded-xl">
+                    <h1 className="font-sans text-center"><b>Rapid</b> <i>React</i></h1>
+                    <h1 className="font-serif text-center"><i>Pipeline</i> <b>Tool</b></h1>
                 </div>
-                <h2 className="mt-10 mx-auto text-nowrap backdrop-blur-sm p-2">Effortlessly
+                <h2 className="mt-10 mx-auto text-center backdrop-blur-sm p-2">Effortlessly
                     create professional React frontends with best practices.</h2>
             </Card>
             <div className="container mx-auto grid lg:grid-cols-2 max-w-6xl gap-14">

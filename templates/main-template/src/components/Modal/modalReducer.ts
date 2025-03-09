@@ -14,8 +14,8 @@ export const modalReducer = (state: ModalState, action: ModalAction) => {
             return {
                 ...state,
                 isShowing: !state.isShowing
-            }
+            };
         default:
             throw Error("Unknown action.");
     }
-}
+};

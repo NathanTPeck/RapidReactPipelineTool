@@ -42,15 +42,16 @@
 }
 
 .page-body {
-    min-height: calc(100vh - 82px);
     display: flex;
     flex-direction: column;
-    margin: 2rem 0;
+    padding: 2rem;
 }
 
-.page-body-no-header {
+.page-height {
+    min-height: calc(100vh - 82px);
+
+}
+
+.page-height-no-header {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    margin: 2rem 0;
 }

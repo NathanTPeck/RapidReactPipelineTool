@@ -2,7 +2,6 @@ import { ReactNode } from "react";
 import ReactDOM from "react-dom";
 import Button from "../Button/Button.tsx";
 import { FaXmark } from "react-icons/fa6";
-import "./Modal.css"
 
 type ModalProps = {
     children: ReactNode;

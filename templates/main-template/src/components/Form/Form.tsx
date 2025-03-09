@@ -3,7 +3,6 @@ import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Button from "../Button/Button.tsx";
 import InputFieldWrapper from "./Inputs/InputFieldWrapper.tsx";
-import "./Form.css"
 import { ReactNode } from "react";
 
 export interface FormField {

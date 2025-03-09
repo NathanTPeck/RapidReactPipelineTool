@@ -1,6 +1,5 @@
 import { HTMLProps, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./SearchBar.css"
 
 export interface SearchBarProps extends HTMLProps<HTMLDivElement> {
     items: SearchItem[];
@@ -14,13 +13,13 @@ export type SearchItem = {
 
 const SearchBar = ({ items, className }: SearchBarProps) => {
     const navigate = useNavigate();
-    const searchRef = useRef<HTMLInputElement>(null)
+    const searchRef = useRef<HTMLInputElement>(null);
     const [searchInput, setSearchInput] = useState("");
     const [showItems, setShowItems] = useState(false);
 
     const filteredItems = items.filter((item) =>
         item.label.toLowerCase().match(searchInput.toLowerCase())
-    )
+    );
 
     const onClickHandle = (idx: number) => {
         navigate(filteredItems[idx].path);
@@ -45,7 +44,7 @@ const SearchBar = ({ items, className }: SearchBarProps) => {
                 {filteredItems.map((item, idx) => (
                     <li key={idx} className="search-item"
                         onMouseDown={(e) => e.preventDefault()}
-                        onClick={() => {onClickHandle(idx)}}
+                        onClick={() => onClickHandle(idx)}
                     >{item.label}</li>
                 ))}
             </ul>)}

@@ -17,7 +17,7 @@ const Signup = () => {
     }, [isLoaded]);
 
     if (!isLoaded) {
-        return (<img src="/loading.svg" className="m-auto"  alt="loading..."/>)
+        return (<img src="/loading.svg" className="m-auto"  alt="loading..."/>);
     }
 
     const fields: FormField[] = [
@@ -67,12 +67,12 @@ const Signup = () => {
             name: data.name,
             email: data.email,
         });
-        navigate("/home");
-    }
+        navigate("/");
+    };
 
     const handleCancel = () => {
-        navigate("/home");
-    }
+        navigate("/");
+    };
 
     return (
         <Card className="w-full max-w-lg m-auto flex flex-col justify-center items-center">
@@ -86,7 +86,7 @@ const Signup = () => {
                 onCancel={handleCancel}
             />
             <p className="mt-6">Already have an account? <a className="underline text-blue-500 cursor-pointer"
-                                                          onClick={() => navigate("/login")}>Login</a></p>
+                                                            onClick={() => navigate("/login")}>Login</a></p>
         </Card>
     );
 };

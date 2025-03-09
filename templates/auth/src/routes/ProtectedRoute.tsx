@@ -6,7 +6,7 @@ const ProtectedRoute = (props: PropsWithChildren) => {
     const { user, isLoaded } = useAuth();
 
     if (!isLoaded) {
-        return <img src="/loading.svg" className="m-auto" alt="loading..."/>
+        return <img src="/loading.svg" className="m-auto" alt="loading..."/>;
     }
 
     if (!user) {

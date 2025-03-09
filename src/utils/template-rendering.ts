@@ -3,15 +3,14 @@ import { Eta } from "eta";
 import { join, relative } from "path";
 import { renameEtaFileFromPath } from "./file-management.js";
 
-
-
 export const renderTemplate = async (templateDir: string, outputDir: string, userInput?: {[key: string]: any}, rename?: string) => {
     const eta = new Eta({views: templateDir})
 
-    const renderDirectory = (currentDir: string) => {
+    const renderDirectory = (currentDir: string, exclude: string[]) => {
         const dirItems = fs.readdirSync(currentDir, {withFileTypes: true});
 
         dirItems.forEach((item) => {
+            if (exclude.includes(item.name)) return;
             const itemPath = join(currentDir, item.name);
             const relativePath = relative(templateDir, itemPath);
             const outputPath = join(outputDir, relativePath);
@@ -19,7 +18,7 @@ export const renderTemplate = async (templateDir: string, outputDir: string, use
             try {
                 if (item.isDirectory()) {
                     fs.ensureDirSync(outputPath);
-                    renderDirectory(itemPath);
+                    renderDirectory(itemPath, exclude);
                 }
 
                 else if (item.isFile() && item.name.includes(".eta.")) {
@@ -48,8 +47,20 @@ export const renderTemplate = async (templateDir: string, outputDir: string, use
         });
     }
 
+    const exclude = getExcludes(userInput);
+
     fs.ensureDirSync(outputDir);
-    renderDirectory(templateDir);
+    renderDirectory(templateDir, exclude);
+}
+
+const getExcludes = (userInput?: {[key: string]: any}) => {
+    let exclude: string[] = []
+
+    if (userInput?.barebones === true) {
+        exclude.push("Footer", "Home.tsx", "LineGraphic", "graphicLineGenerator.ts", "Footer.css", "LineGraphic.css");
+    }
+
+    return exclude;
 }
 
 export const deleteTemplate = async (templateDir: string) => {

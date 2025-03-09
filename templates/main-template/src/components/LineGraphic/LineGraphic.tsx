@@ -1,5 +1,4 @@
 import React from "react";
-import "./LineGraphic.css"
 
 export const LineGraphic = () => {
     return (
@@ -233,4 +232,4 @@ export const squareSample: Lines[] = [{
         },
         color: "yellow"
     },
-]
+];

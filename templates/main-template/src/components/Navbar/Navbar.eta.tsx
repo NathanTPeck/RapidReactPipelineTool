@@ -1,11 +1,13 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaRegMoon, FaRegSun } from "react-icons/fa";
-import "./Navbar.css";
 import { allRoutes, navRoutes, RouteComponent } from "../../routes/Routes.tsx";
 import Button from "../Button/Button.tsx";
+import Card from "../Card/Card.tsx";
 import ThemeContext from "../../services/theme/ThemeContext.tsx";
+<% if (it.barebones == false) { %>
 import SearchBar from "../SearchBar/SearchBar.tsx";
+<% } %>
 import { AppName } from "../../App.tsx";
 import Sidebar from "../Sidebar/Sidebar.tsx";
 <% if (it.auth == true) { %>
@@ -23,7 +25,7 @@ const Navbar = () => {
             return {
                 label: route.name,
                 path: route.path,
-            }
+            };
 <% if (it.auth == true) { %>
     }).filter((route) => !(!!user && (route.path === "/login" || route.path === "/signup")));
 <% } %>
@@ -40,7 +42,7 @@ const Navbar = () => {
 
     return (
         <>
-            <div className="navbar-container backdrop-blur-xl">
+            <Card className="navbar-container backdrop-blur-xl px-0 py-1 rounded-t-none border-0">
                 <header className="container mx-auto px-0 max-w-6xl">
                     <a className="flex-shrink-0 web-title" href="/">
                         <h2>{AppName}</h2>
@@ -52,7 +54,9 @@ const Navbar = () => {
                             ))}
                         </nav>
                         <div className="flex mr-8 gap-2 ml-auto">
-                            <SearchBar className="nav-search" items={searchItems}/>
+<% if (it.barebones == false) { %>
+                            <SearchBar className="nav-search" items={searchItems} />
+<% } %>
 <% if (it.auth == true) { %>
                             <nav className="header-nav flex">
                                 {!user && isLoaded ? (
@@ -77,7 +81,7 @@ const Navbar = () => {
                         <FaBars/>
                     </button>
                 </header>
-            </div>
+            </Card>
             <Sidebar showSidebar={showSidebar} toggleSidebar={toggleSidebar}/>
         </>
     );

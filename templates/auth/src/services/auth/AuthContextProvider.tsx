@@ -5,17 +5,17 @@ import AuthContext, { MockUser, NullableTokenInfo } from "./AuthContext.tsx";
 export const mockUser: MockUser = {
     name: "Mock Name",
     email: "mock@email.com",
-}
+};
 export const mockToken: NullableTokenInfo = {
     accessToken: "1",
     refreshToken: "2",
     tokenExpires: Date.UTC(2090),
-}
+};
 
 const AuthContextProvider = (props: PropsWithChildren) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [user, setUser] = useState<MockUser | null>(null);
-    const tokenStorageName = "session-token"
+    const tokenStorageName = "session-token";
 
     const setTokenInfo = useCallback((tokenInfo: NullableTokenInfo) => {
         sessionStorage.setItem(tokenStorageName, JSON.stringify(tokenInfo));
@@ -23,11 +23,11 @@ const AuthContextProvider = (props: PropsWithChildren) => {
         if (!tokenInfo){
             setUser(null);
         }
-    }, [])
+    }, []);
 
     const getTokenInfo = () => {
         return JSON.parse(sessionStorage.getItem(tokenStorageName) ?? "null") as NullableTokenInfo;
-    }
+    };
 
     const logout = useCallback(async () => {
         const token = getTokenInfo();
@@ -68,7 +68,7 @@ const AuthContextProvider = (props: PropsWithChildren) => {
         <AuthContext.Provider value={contextValue}>
             {props.children}
         </AuthContext.Provider>
-    )
+    );
 };
 
 export default AuthContextProvider;
