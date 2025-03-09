@@ -1,5 +1,4 @@
 import { HTMLAttributes, ReactNode } from "react";
-import "./Card.css"
 
 interface Card extends HTMLAttributes<HTMLDivElement> {
     children?: ReactNode;
@@ -14,6 +13,6 @@ const Card = ({ children, className, altColor }: Card) => {
             {children}
         </div>
     );
-}
+};
 
 export default Card;

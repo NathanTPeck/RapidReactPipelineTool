@@ -2,8 +2,6 @@ import { FormField } from "../Form";
 import { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import { ReactNode } from "react";
 import { Text, Number, Select, Radio, Checkbox, DateTime } from "./InputFields/InputFields";
-import "./InputFieldWrapper.css"
-
 
 type InputFieldProps<T extends FieldValues> = {
     field: FormField;

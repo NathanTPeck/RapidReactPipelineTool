@@ -1,6 +1,5 @@
-import "./Footer.css"
 import Form, { FormField } from "../Form/Form.tsx";
-import { z } from "zod"
+import { z } from "zod";
 
 const Footer = () => {
     const subscribeForm: FormField[] = [{
@@ -8,11 +7,11 @@ const Footer = () => {
         label: "Email",
         type: "email",
         required: true,
-    }]
+    }];
 
     const subscribeSchema = z.object({
         email: z.string().email(),
-    })
+    });
 
     return (
         <div className="footer-body p-8">
@@ -49,10 +48,10 @@ const Footer = () => {
                     <div className="mt-4">
                         <Form
                             cancellable={false}
-                        submitText="Subscribe"
-                        fields={subscribeForm}
-                        schema={subscribeSchema}
-                        onSubmit={() => console.log("Subscribed")}/>
+                            submitText="Subscribe"
+                            fields={subscribeForm}
+                            schema={subscribeSchema}
+                            onSubmit={() => console.log("Subscribed")}/>
                     </div>
                 </div>
             </div>

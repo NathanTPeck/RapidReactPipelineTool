@@ -21,7 +21,7 @@ type Lines = {
 const colors = ["red", "orange", "yellow"];
 
 const generateRandomLinePair = (width: number, height: number, total: number) => {
-    const output: Lines[] = []
+    const output: Lines[] = [];
     for (let i = 0; i < total; i++) {
         const startX = getRandomInt(width);
         const startY = getRandomInt(height);

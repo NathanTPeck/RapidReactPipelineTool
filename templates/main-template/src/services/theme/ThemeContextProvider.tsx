@@ -13,7 +13,7 @@ const ThemeContextProvider = (props: PropsWithChildren) => {
             localStorage.setItem("theme", theme);
             return theme;
         });
-    }
+    };
 
     useEffect(() => {
         document.documentElement.className = themeMode;
@@ -23,7 +23,7 @@ const ThemeContextProvider = (props: PropsWithChildren) => {
         <ThemeContext.Provider value={{ themeMode, toggleTheme }}>
             {props.children}
         </ThemeContext.Provider>
-    )
-}
+    );
+};
 
 export default ThemeContextProvider;

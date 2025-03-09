@@ -12,12 +12,12 @@ const Login = () => {
 
     useEffect(() => {
         if (user) {
-            navigate("/home");
+            navigate("/");
         }
     }, [isLoaded]);
 
     if (!isLoaded) {
-        return (<img src="/loading.svg" className="m-auto"  alt="loading..."/>)
+        return (<img src="/loading.svg" className="m-auto"  alt="loading..."/>);
     }
 
     const fields: FormField[] = [
@@ -39,15 +39,15 @@ const Login = () => {
         email: z.string().email("Invalid email address").min(1, "Field is required"),
         password: z.string().min(8, "Must be at least 8 characters"), // Todo: super refine for pw strength
     });
-    
+
 
     const handleSubmit = (data: z.infer<typeof schema>)=> {
         // ToDo send to backend
         setTokenInfo(mockToken);
         setUser({ ...mockUser, email: data.email });
-        navigate("/home");
-    }
-    
+        navigate("/");
+    };
+
     return (
         <Card className="w-full max-w-lg m-auto flex justify-center items-center flex-col">
             <Form

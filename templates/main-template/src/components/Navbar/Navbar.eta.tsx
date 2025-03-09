@@ -1,7 +1,6 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { FaBars, FaRegMoon, FaRegSun } from "react-icons/fa";
-import "./Navbar.css";
 import { allRoutes, navRoutes, RouteComponent } from "../../routes/Routes.tsx";
 import Button from "../Button/Button.tsx";
 import Card from "../Card/Card.tsx";
@@ -26,7 +25,7 @@ const Navbar = () => {
             return {
                 label: route.name,
                 path: route.path,
-            }
+            };
 <% if (it.auth == true) { %>
     }).filter((route) => !(!!user && (route.path === "/login" || route.path === "/signup")));
 <% } %>

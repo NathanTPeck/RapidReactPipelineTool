@@ -57,7 +57,7 @@ const getExcludes = (userInput?: {[key: string]: any}) => {
     let exclude: string[] = []
 
     if (userInput?.barebones === true) {
-        exclude.push("Footer", "Home.tsx", "LineGraphic", "graphicLineGenerator.ts");
+        exclude.push("Footer", "Home.tsx", "LineGraphic", "graphicLineGenerator.ts", "Footer.css", "LineGraphic.css");
     }
 
     return exclude;

@@ -20,7 +20,7 @@ const useToast = () => {
             default:
                 toast.error("Invalid toast type: " + type);
         }
-    }
+    };
 
     return { notify };
 };

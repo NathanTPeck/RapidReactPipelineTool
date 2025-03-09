@@ -10,13 +10,13 @@ import SearchBar, { SearchItem } from "../components/SearchBar/SearchBar.tsx";
 
 const Features = () => {
     // Button Example
-    const [buttonText, setButtonText] = useState<string | null>(null)
+    const [buttonText, setButtonText] = useState<string | null>(null);
     const buttonOnClick = () => {
         setButtonText("Button Clicked!");
-    }
+    };
     const buttonReset = () => {
         setButtonText(null);
-    }
+    };
 
     // Search bar Example
     const searchBarItems: SearchItem[] = [
@@ -28,7 +28,7 @@ const Features = () => {
             label: "Item 2",
             path: "#"
         }
-    ]
+    ];
 
     // Form Example
     const formFields: FormField[] = [
@@ -88,7 +88,7 @@ const Features = () => {
     // Toast Example
     const { notify } = useToast();
     const toastType = "success";
-    const toastContent = "This is a notification"
+    const toastContent = "This is a notification";
 
     // Modal Example
     const [state, dispatch] = useReducer(modalReducer, { isShowing: false });
@@ -99,7 +99,8 @@ const Features = () => {
     return (
         <div className="container grid grid-cols-6 mx-auto mb-40 max-w-6xl gap-5 min-w-96">
             <h1 className="col-span-6 text-5xl mx-auto">Feature examples</h1>
-            <p className="col-span-6">This page shows some examples of the custom components that come with the application. To view the source code, go to ./src/pages/Features.tsx in your files</p>
+            <p className="col-span-6">This page shows examples of the custom components that come with the application.
+                To view the source code, go to <code className="text-stone-400">"./src/pages/Features.tsx"</code> in your files</p>
             <Card className="col-span-6 md:col-span-3 flex-col flex justify-between gap-5">
                 <h2>Button Component</h2>
                 <p>This is a quick example of the use of the custom button element,
@@ -115,8 +116,8 @@ const Features = () => {
             </Card>
             <Card className="col-span-6 md:col-span-3 flex-col flex justify-between gap-5">
                 <h2>Search bar Component</h2>
-                <p>This shows how you can use a toast to notify the user of any actions.
-                    You can also put anything you want in the toast, including buttons etc</p>
+                <p>This shows how you can use a search bar for navigation purposes.
+                    Simply reference a list of labels and the route they lead to.</p>
                 {/*----------Search bar example----------*/}
                 <SearchBar items={searchBarItems} />
             </Card>
@@ -164,11 +165,11 @@ const Features = () => {
             </Card>
             <Card className="col-span-6 md:col-span-3 flex-col flex gap-5 justify-between">
                 <h2>Modal Component</h2>
-                <p>This is a quick example of the use of the custom button element,
-                    it is very simple to use and has multiple theme options.
+                <p>Here is an example of the modal component,
+                    this is a useful way to focus the users attention.
                 </p>
                 <p>
-                    Note: you can put the Modal component where you want in the return.
+                    Note: it does not matter where you place the Modal component.
                 </p>
                 {/*----------Modal Example----------*/}
                 <Button className="mx-auto" type="primary"

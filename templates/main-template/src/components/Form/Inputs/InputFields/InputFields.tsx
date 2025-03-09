@@ -2,7 +2,6 @@ import { FieldValues, UseFormRegister } from "react-hook-form";
 import React, { useState } from "react";
 import Button from "../../../Button/Button";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import "./InputFields.css"
 
 interface DefaultInputProps<T extends FieldValues> {
     registerOptions: ReturnType<UseFormRegister<T>>;
@@ -76,7 +75,7 @@ export const Text = <T extends FieldValues>({ registerOptions, type, error }: Te
     const togglePassword = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setShowPassword((prev) => !prev);
-    }
+    };
 
     return (
         <div className="input-wrapper relative">
