@@ -1,16 +1,17 @@
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import {cleanPath, isDirectoryEmpty, validateAndParseOptions} from "../../utils/validation.js";
+import { isDirectoryEmpty, validateAndParseOptions } from "../../utils/validation.js";
 import {deleteTemplate, renderTemplate } from "../../utils/template-rendering.js";
-import {Commands} from "../../index.js";
+import { Commands } from "../../index.js";
 import { Paths, TemplateDirectories } from "../../utils/constants.js";
+import { getAbsoluteDirectory } from "../../utils/file-management.js";
 
 const createProject = async (name: string, targetDir: string, inputOptions: {[key: string]: any}) => {
     const options = validateAndParseOptions(Commands.createProject, {name, targetDir, ...inputOptions});
 
     const __dirname = dirname(fileURLToPath(import.meta.url));
 
-    let targetPath = join(process.cwd(), cleanPath(targetDir));
+    let targetPath = getAbsoluteDirectory(targetDir);
     const directoryName = name.replace(/ /g, "");
     targetPath = join(targetPath, directoryName);
     if (!await isDirectoryEmpty(targetPath)) {
