@@ -2,9 +2,9 @@ import fs from "fs-extra"
 import { dirname, join } from "path"
 import { renderTemplate } from "../../utils/template-rendering.js";
 import { fileURLToPath } from "url";
-import { cleanPath, validateFiles } from "../../utils/validation.js";
+import { validateFiles } from "../../utils/validation.js";
 import { Paths, TemplateDirectories } from "../../utils/constants.js";
-import { AppendFileRegex, appendFilesWithRegEx, titleCase } from "../../utils/file-management.js";
+import { AppendFileRegex, appendFilesWithRegEx, getAbsoluteDirectory, titleCase } from "../../utils/file-management.js";
 
 export class PageTypes {
     public static default = `default`;
@@ -47,7 +47,7 @@ const isValid = (absoluteDirectory: string, filename: string, appendFilesList: A
 
 const addPageTemplate = async (directory: string, name: string, pageType: string) => {
     const __dirname = dirname(fileURLToPath(import.meta.url));
-    const absoluteDirectory = join(process.cwd(), cleanPath(directory));
+    const absoluteDirectory = getAbsoluteDirectory(directory);
 
     const routeName = name.toLowerCase().replace(/ /g, '-');
     const componentName = titleCase(name).replace(/ /g, '');

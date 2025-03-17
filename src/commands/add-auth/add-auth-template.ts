@@ -1,8 +1,13 @@
 import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-import { cleanPath, validateFile, validateFiles } from "../../utils/validation.js";
+import { validateFiles } from "../../utils/validation.js";
 import { renderTemplate } from "../../utils/template-rendering.js";
-import { AppendFileRegex, appendFilesWithRegEx, hasCommonFiles } from "../../utils/file-management.js";
+import {
+    AppendFileRegex,
+    appendFilesWithRegEx,
+    getAbsoluteDirectory,
+    hasCommonFiles
+} from "../../utils/file-management.js";
 import { Paths, TemplateDirectories } from "../../utils/constants.js";
 
 const getAddAuthAppendFileRegex = (absoluteDirectory: string, protectedRoute: boolean=false) => {
@@ -125,7 +130,7 @@ const addAuthTemplate = async (directory: string, options: {[key: string]: any})
         protectedRoute = true;
     }
     const __dirname = dirname(fileURLToPath(import.meta.url));
-    const absoluteDirectory = join(process.cwd(), cleanPath(directory));
+    const absoluteDirectory = getAbsoluteDirectory(directory);
 
     const appendFiles = getAddAuthAppendFileRegex(absoluteDirectory, protectedRoute);
 

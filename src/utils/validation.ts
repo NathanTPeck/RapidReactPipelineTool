@@ -46,15 +46,7 @@ const testRegex = (file: string, regexList: RegExp[]) => {
     });
 }
 
-export const validateFiles = (filesAppendRegexList: AppendFileRegex[]) => {
-    for (const {filePath, appendList} of filesAppendRegexList) {
-        const regexList = appendList.map(append => append.regex);
-        if (!validateFile(filePath, regexList)) return false;
-    }
-    return true;
-}
-
-export const validateFile = (filePath: string, regexList: RegExp[]) => {
+const validateFile = (filePath: string, regexList: RegExp[]) => {
     let fileContent = fs.readFileSync(filePath, "utf-8");
 
     if (testRegex(fileContent, regexList)) {
@@ -63,3 +55,12 @@ export const validateFile = (filePath: string, regexList: RegExp[]) => {
     }
     return true;
 }
+
+export const validateFiles = (filesAppendRegexList: AppendFileRegex[]) => {
+    for (const {filePath, appendList} of filesAppendRegexList) {
+        const regexList = appendList.map(append => append.regex);
+        if (!validateFile(filePath, regexList)) return false;
+    }
+    return true;
+}
+

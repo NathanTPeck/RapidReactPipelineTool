@@ -7,7 +7,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && cpx ./templates/**/* ./dist/templates"
+    "build": "tsc && cpx './templates/**/*' './dist/templates'"
   },
   "type": "module",
   "keywords": [],

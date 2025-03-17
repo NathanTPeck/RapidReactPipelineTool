@@ -1,13 +1,7 @@
-import { dirname, basename, join, relative } from "path";
+import { dirname, basename, join, relative, isAbsolute } from "path";
 import * as prettier from "prettier";
 import fs from "fs-extra";
-
-export const renameEtaFileFromPath = (filePath: string, rename: string) => {
-    const dir = dirname(filePath);
-    const baseName = basename(filePath);
-    const  renamedBaseName = baseName.replace(/.*\.eta\./, `${rename}.`);
-    return join(dir, renamedBaseName);
-};
+import { cleanPath } from "./validation.js";
 
 export type FileReplacement = {
     regex: RegExp,
@@ -25,6 +19,21 @@ export const titleCase = (text: string) => {
         str => str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()
     );
 };
+
+export const renameEtaFileFromPath = (filePath: string, rename: string) => {
+    const dir = dirname(filePath);
+    const baseName = basename(filePath);
+    const  renamedBaseName = baseName.replace(/.*\.eta\./, `${rename}.`);
+    return join(dir, renamedBaseName);
+};
+
+export const getAbsoluteDirectory = (directory: string) => {
+    if (isAbsolute(directory)) {
+        return directory;
+    }
+
+    return join(process.cwd(), cleanPath(directory));
+}
 
 export const appendFilesWithRegEx = async (filesRegexList: AppendFileRegex[]) => {
     for (const {filePath, appendList} of filesRegexList) {
